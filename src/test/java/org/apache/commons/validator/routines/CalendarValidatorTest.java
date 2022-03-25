@@ -223,7 +223,7 @@ public class CalendarValidatorTest extends AbstractCalendarValidatorTest {
         assertEquals("EST locale",   "12/30/05",         calValidator.format(cal20050101, Locale.US, EST));
         assertEquals("EST patternA", "2005-12-30 20:15", calValidator.format(cal20050101, "yyyy-MM-dd HH:mm", EST));
         assertEquals("EST patternB", "2005-12-30 EST",   calValidator.format(cal20050101, "yyyy-MM-dd z", EST));
-        assertEquals("EST both",     "30 Dez 2005",      calValidator.format(cal20050101, "dd MMM yyyy", Locale.GERMAN, EST));
+        assertEquals("EST both",     "30 Dez 2005",      AbstractCalendarValidator.format(calValidator, cal20050101, "dd MMM yyyy", Locale.GERMAN, EST));
 
         // Restore the original default
         Locale.setDefault(origDefault);

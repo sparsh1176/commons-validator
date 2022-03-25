@@ -80,7 +80,7 @@ public abstract class AbstractCalendarValidator extends AbstractFormatValidator 
      * @return The value formatted as a <code>String</code>.
      */
     public String format(Object value, TimeZone timeZone) {
-        return format(value, (String)null, (Locale)null, timeZone);
+        return format(this, value, (String)null, (Locale)null, timeZone);
     }
 
     /**
@@ -94,7 +94,7 @@ public abstract class AbstractCalendarValidator extends AbstractFormatValidator 
      * @return The value formatted as a <code>String</code>.
      */
     public String format(Object value, String pattern, TimeZone timeZone) {
-        return format(value, pattern, (Locale)null, timeZone);
+        return format(this, value, pattern, (Locale)null, timeZone);
     }
 
     /**
@@ -108,7 +108,7 @@ public abstract class AbstractCalendarValidator extends AbstractFormatValidator 
      * @return The value formatted as a <code>String</code>.
      */
     public String format(Object value, Locale locale, TimeZone timeZone) {
-        return format(value, (String)null, locale, timeZone);
+        return format(this, value, (String)null, locale, timeZone);
     }
 
     /**
@@ -122,13 +122,15 @@ public abstract class AbstractCalendarValidator extends AbstractFormatValidator 
      */
     @Override
     public String format(Object value, String pattern, Locale locale) {
-        return format(value, pattern, locale, (TimeZone)null);
+        return format(this, value, pattern, locale, (TimeZone)null);
     }
 
     /**
      * <p>Format an object using the specified pattern and/or
      *    <code>Locale</code>.
      *
+     * @param abstractCalendarValidator
+     * @param abstractCalendarValidator
      * @param value The value validation is being performed on.
      * @param pattern The pattern used to format the value.
      * @param locale The locale to use for the Format.
@@ -136,14 +138,15 @@ public abstract class AbstractCalendarValidator extends AbstractFormatValidator 
      *  system default if null (unless value is a <code>Calendar</code>.
      * @return The value formatted as a <code>String</code>.
      */
-    public String format(Object value, String pattern, Locale locale, TimeZone timeZone) {
-        DateFormat formatter = (DateFormat)getFormat(pattern, locale);
+
+    public static String format(AbstractCalendarValidator abstractCalendarValidator, Object value, String pattern, Locale locale, TimeZone timeZone) {
+        DateFormat formatter = (DateFormat) abstractCalendarValidator.getFormat(pattern, locale);
         if (timeZone != null) {
             formatter.setTimeZone(timeZone);
         } else if (value instanceof Calendar) {
             formatter.setTimeZone(((Calendar)value).getTimeZone());
         }
-        return format(value, formatter);
+        return abstractCalendarValidator.format(value, formatter);
     }
 
     /**

@@ -397,7 +397,7 @@ public class UrlValidator implements Serializable {
         String ipv6 = authorityMatcher.group(PARSE_AUTHORITY_IPV6);
         if (ipv6 != null) {
             InetAddressValidator inetAddressValidator = InetAddressValidator.getInstance();
-                if (!inetAddressValidator.isValidInet6Address(ipv6)) {
+                if (!inetAddressValidator.isValidipv6(ipv6)) {
                     return false;
                 }
         } else {

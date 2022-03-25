@@ -77,7 +77,7 @@ public class InetAddressValidator implements Serializable {
      * @return true if the string validates as an IP address
      */
     public boolean isValid(String inetAddress) {
-        return isValidInet4Address(inetAddress) || isValidInet6Address(inetAddress);
+        return isValidInet4Address(inetAddress) || isValidipv6(inetAddress);
     }
 
     /**
@@ -124,17 +124,18 @@ public class InetAddressValidator implements Serializable {
      * Validates an IPv6 address. Returns true if valid.
      * @param inet6Address the IPv6 address to validate
      * @return true if the argument contains a valid IPv6 address
-     * 
+     *
      * @since 1.4.1
      */
-    public boolean isValidInet6Address(String inet6Address) {
+
+    public boolean isValidipv6(String inet6Address) {
         String[] parts;
         // remove prefix size. This will appear after the zone id (if any)
         parts = inet6Address.split("/", -1);
-        if (parts.length > 2) {
-            return false; // can only have one prefix specifier
+        if(!checkingLength(parts)){
+            return false;
         }
-        if (parts.length == 2) {
+        if (checkingLength(parts)) {
             if (parts[1].matches("\\d{1,3}")) { // Need to eliminate signs
                 int bits = Integer.parseInt(parts[1]); // cannot fail because of RE check
                 if (bits < 0 || bits > MAX_BYTE) {
@@ -146,9 +147,9 @@ public class InetAddressValidator implements Serializable {
         }
         // remove zone-id
         parts = parts[0].split("%", -1);
-        if (parts.length > 2) {
+        if (!checkingLength(parts)) {
             return false;
-        } else if (parts.length == 2){
+        } else if (checkingLength(parts)){
             // The id syntax is implemenatation independent, but it presumably cannot allow:
             // whitespace, '/' or '%'
             if (!parts[1].matches("[^\\s/%]+")) {
@@ -216,5 +217,14 @@ public class InetAddressValidator implements Serializable {
             return false;
         }
         return true;
+    }
+    public boolean checkingLength(String[] parts){
+        if(parts.length>2){
+            return false;
+        }
+        if(parts.length ==2){
+            return true;
+        }
+        return false;
     }
 }

@@ -164,18 +164,6 @@ public abstract class AbstractNumberValidator extends AbstractFormatValidator {
     }
 
     /**
-     * <p>Process the parsed value, performing any further validation
-     *    and type conversion required.</p>
-     *
-     * @param value The parsed object created.
-     * @param formatter The Format used to parse the value with.
-     * @return The parsed value converted to the appropriate type
-     *         if valid or <code>null</code> if invalid.
-     */
-    @Override
-    protected abstract Object processParsedValue(Object value, Format formatter);
-
-    /**
      * <p>Returns a <code>NumberFormat</code> for the specified <i>pattern</i>
      *    and/or <code>Locale</code>.</p>
      *

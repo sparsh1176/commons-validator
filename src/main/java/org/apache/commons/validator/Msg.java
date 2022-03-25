@@ -29,8 +29,6 @@ import java.io.Serializable;
 //TODO mutable non-private fields
 public class Msg implements Cloneable, Serializable {
 
-    private static final long serialVersionUID = 5690015734364127124L;
-
     /**
      * The resource bundle name that this Msg's <code>key</code> should be
      * resolved in (optional).

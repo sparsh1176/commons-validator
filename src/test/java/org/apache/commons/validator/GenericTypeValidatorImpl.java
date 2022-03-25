@@ -39,7 +39,7 @@ public class GenericTypeValidatorImpl {
    public static Byte validateByte(Object bean, Field field) {
       String value = ValidatorUtils.getValueAsString(bean, field.getProperty());
 
-      return GenericTypeValidator.formatByte(value);
+      return GenricTypeValidatorClass.formatByte(value);
    }
 
    /**
@@ -54,7 +54,7 @@ public class GenericTypeValidatorImpl {
    public static Byte validateByte(Object bean, Field field, Locale locale) {
       String value = ValidatorUtils.getValueAsString(bean, field.getProperty());
 
-      return GenericTypeValidator.formatByte(value, locale);
+      return GenricTypeValidatorClass.formatByte(value, locale);
    }
 
    /**
@@ -69,7 +69,7 @@ public class GenericTypeValidatorImpl {
    public static Short validateShort(Object bean, Field field) {
       String value = ValidatorUtils.getValueAsString(bean, field.getProperty());
 
-      return GenericTypeValidator.formatShort(value);
+      return GenricTypeValidatorClass.formatShort(value);
    }
 
    /**
@@ -84,7 +84,7 @@ public class GenericTypeValidatorImpl {
    public static Short validateShort(Object bean, Field field, Locale locale) {
       String value = ValidatorUtils.getValueAsString(bean, field.getProperty());
 
-      return GenericTypeValidator.formatShort(value, locale);
+      return GenricTypeValidatorClass.formatShort(value, locale);
    }
 
    /**

@@ -78,7 +78,7 @@ public class GenericValidator implements Serializable {
      * @return true if the value can be converted to a Byte.
      */
     public static boolean isByte(String value) {
-        return (GenericTypeValidator.formatByte(value) != null);
+        return (GenricTypeValidatorClass.formatByte(value) != null);
     }
 
     /**
@@ -88,7 +88,7 @@ public class GenericValidator implements Serializable {
      * @return true if the value can be converted to a Short.
      */
     public static boolean isShort(String value) {
-        return (GenericTypeValidator.formatShort(value) != null);
+        return (GenricTypeValidatorClass.formatShort(value) != null);
     }
 
     /**
